@@ -10,12 +10,100 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="assets/materialdesignicons.min.css" rel="stylesheet">
     <link href="assets/vuetify.min.css" rel="stylesheet">
-    <script src="assets/tailwind-3.0.23.js" />
-    </script>
+    <script src="assets/tailwind-3.0.23.js"></script>
+    <script src="assets/vue.js"></script>
+    <script src="assets/vuetify.js"></script>
+    <script src="assets/axios.min.js"></script>
+    <style>
+        html,
+        body,
+        #app {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-width: 100%;
+            height: 100%;
+            min-height: 100%;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        * {
+            user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -o-user-select: none;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+
+        .img-container {
+            max-width: 400px;
+            max-height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="app" v-cloak class="flex justify-center items-center flex-none subpixel-antialiased">
+        <div>
 
+            <template v-for="app in apps">
+                <a :href="app.url" class="img-container">
+                    <img :src="app.img" alt="" class="image">
+                </a>
+            </template>
+        </div>
+
+    </div>
+    <script type="module">
+        axios.defaults.headers.common = {
+            "X-Requested-With": "XMLHttpRequest",
+            "Access-Control-Allow-Origin": "*",
+        };
+
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify({
+            }),
+            data() {
+                return {
+                    variable: null,
+                    apps: [
+                        {
+                            url: 'logins/login-1/login-1.html',
+                            img: 'logins/login-1/images/cover.png'
+
+                        },
+                    ],
+
+
+                }
+            },
+            beforeMount() {
+
+            },
+            computed: {},
+            watch: {},
+            methods: {
+
+            }
+
+        })
+    </script>
 </body>
 
 </html>
